@@ -1,6 +1,6 @@
 {
   "name": "mqtt-service",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Wrapper around MQTT with handy features such as automatic service status messsages and enforced message formats",
   "main": "mqtt-service.js",
   "scripts": {
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/seymar/mqtt-service/issues"
   },
-  "homepage": "https://github.com/seymar/mqtt-service#readme"
+  "homepage": "https://github.com/seymar/mqtt-service#readme",
+  "dependencies": {
+    "mqtt": "^2.9.0"
+  }
 }
