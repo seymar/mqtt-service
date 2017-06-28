@@ -1,0 +1,22 @@
+{
+  "name": "mqtt-service",
+  "version": "0.0.1",
+  "description": "Wrapper around MQTT with handy features such as automatic service status messsages and enforced message formats",
+  "main": "mqtt-service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seymar/mqtt-service.git"
+  },
+  "keywords": [
+    "mqtt"
+  ],
+  "author": "S.E.Y. Martens",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seymar/mqtt-service/issues"
+  },
+  "homepage": "https://github.com/seymar/mqtt-service#readme"
+}
