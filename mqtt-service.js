@@ -21,10 +21,8 @@ function MQTTService(serviceName, mqttConfig) {
 
   this.serviceName = serviceName;
 
-  this.outputName;
-  this.outputTopic;
-  this.setOutputName(serviceName);
-
+  this.setPublishPrefix(serviceName);
+  
   // The domain topic as prefix for all other topics
   this.domainTopic = mqttConfig.domain + (mqttConfig.domain.substr(mqttConfig.domain.length-1) == '/' ? '' : '/'); // Add trailing slash if not there
   
@@ -79,15 +77,15 @@ function MQTTService(serviceName, mqttConfig) {
    * /myDomain/outputTopic/sensor1value `high`
    */
   MQTTService.prototype.publish = function(topic, message) {
-    this.broker.publish(this.outputTopic + topic, message, {qos: 2, retain: true});
+    this.broker.publish(this.publishTopic + topic, message, {qos: 2, retain: true});
   }
 
   /**
    * Sets the output topic that the publish function above uses as prefix
    */
-  MQTTService.prototype.setOutputName = function(outputName) {
-    this.outputName = outputName;
-    this.outputTopic = this.domainTopic + this.outputName + '/';
+  MQTTService.prototype.setPublishPrefix = function(publishPrefix) {
+    this.publishPrefix = publishPrefix;
+    this.publishTopic = this.domainTopic + publishPrefix + (publishPrefix ? '/' : '');
 
     return this;
   }

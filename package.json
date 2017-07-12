@@ -1,6 +1,6 @@
 {
   "name": "mqtt-service",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Wrapper around MQTT with handy features such as automatic service status messsages and enforced message formats",
   "main": "mqtt-service.js",
   "scripts": {
