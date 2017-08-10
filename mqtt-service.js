@@ -77,9 +77,9 @@ function MQTTService(serviceName, mqttConfig) {
    * /myDomain/outputTopic/sensor1value `high`
    */
   MQTTService.prototype.publish = function(topic, message) {
-    if(message.susstr(0, 1) == '{')
+    if(message.substr(0, 1) == '{')
       message = JSON.stringify(message);
-    
+
     this.broker.publish(this.publishTopic + topic, message, {qos: 2, retain: true});
   }
 

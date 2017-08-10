@@ -1,6 +1,6 @@
 {
   "name": "mqtt-service",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Module to create a MQTT connected service that publishes data about devices",
   "main": "mqtt-service.js",
   "scripts": {
