@@ -1,25 +1,29 @@
 {
-  "name": "mqtt-service",
-  "version": "0.0.8",
-  "description": "Module to create a MQTT connected service that publishes data about devices",
-  "main": "mqtt-service.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": {
+    "name": "seymar"
   },
+  "bugs": {
+    "url": "https://github.com/seymar/mqtt-service/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "mqtt": "^2.14.0"
+  },
+  "deprecated": false,
+  "description": "Module to create a MQTT connected service that publishes data about a device",
+  "homepage": "https://github.com/seymar/mqtt-service#readme",
+  "keywords": [
+    "mqtt"
+  ],
+  "license": "ISC",
+  "main": "mqtt-service.js",
+  "name": "mqtt-service",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/seymar/mqtt-service.git"
   },
-  "keywords": [
-    "mqtt"
-  ],
-  "author": "S.E.Y. Martens",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/seymar/mqtt-service/issues"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/seymar/mqtt-service#readme",
-  "dependencies": {
-    "mqtt": "^2.9.0"
-  }
+  "version": "0.0.9"
 }

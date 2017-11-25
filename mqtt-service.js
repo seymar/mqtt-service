@@ -50,22 +50,26 @@ function MQTTService(serviceName, mqttConfig) {
 
     // Subscribe
     this.subscribe(_self.systemTopic + '#');
+    console.log('Subscribed to system topic: ', _self.systemTopic)
   })
   .on('message', function (topic, message) {
+    message = message.toString()
+    if('{['.indexOf(message.substr(0, 1)) != -1) message = JSON.parse(message)
+
     // Remove domain topic
     var topic = topic.replace(_self.domainTopic, '');
 
     // Passthrough original message
-    _self.emit('message', topic, message.toString());
+    _self.emit('message', topic, message);
 
     // Emit topic event to allow for listening to a specific topic
-    _self.emit(topic, message.toString());
+    _self.emit(topic, message);
     
     // Check whether the message is command for the service to do something
     if(topic.indexOf(_self.systemTopic) != -1) {
       _self.emit('command', message);
     }
-  });
+  })
 }
   MQTTService.prototype = Object.create(EventEmitter.prototype);
 
@@ -76,11 +80,13 @@ function MQTTService(serviceName, mqttConfig) {
    * Will publish:
    * /myDomain/outputTopic/sensor1value `high`
    */
-  MQTTService.prototype.publish = function(topic, message) {
-    if(message.substr(0, 1) == '{')
-      message = JSON.stringify(message);
+  MQTTService.prototype.publish = function(topic, payload) {
+    if(typeof payload == 'object')
+      payload = JSON.stringify(payload);
+    
+    this.broker.publish(this.publishTopic + topic, payload.toString(), {qos: 2, retain: true});
 
-    this.broker.publish(this.publishTopic + topic, message, {qos: 2, retain: true});
+    return this;
   }
 
   /**
@@ -96,7 +102,12 @@ function MQTTService(serviceName, mqttConfig) {
    * Subscribe to topic
    */
   MQTTService.prototype.subscribe = function(topic) {
-    this.broker.subscribe(this.domainTopic + topic);
+    const subscriptionTopic = this.domainTopic + topic
+    this.broker.subscribe(subscriptionTopic)
+
+    console.log(`Subscribed to ${subscriptionTopic}`)
+    
+    return this
   }
 
 module.exports = MQTTService;
